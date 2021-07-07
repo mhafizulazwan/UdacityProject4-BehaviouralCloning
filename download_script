@@ -1,0 +1,22 @@
+#####This is script to download data from Google drive####
+Note: Download usually is faster as compared to upload
+
+Step 1:
+Make sure the data in Google drive is zipped and share as public
+
+Step 2:
+cd /opt #can put the data anywhere you want
+
+Step 2:
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
+
+Example of FILEID: 1xcAeEo9HTBnh11GAg9DzV8_2lu9UqHP2
+Example of FILENAME: gdrive
+Full example:
+
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1xcAeEo9HTBnh11GAg9DzV8_2lu9UqHP2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1xcAeEo9HTBnh11GAg9DzV8_2lu9UqHP2" -O gdrive && rm -rf /tmp/cookies.txt
+
+Step 3:
+unzip name_of_folder.fileformat
+
+Eg: unzip gdrive
